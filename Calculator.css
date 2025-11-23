@@ -59,7 +59,7 @@ h1 {
   justify-content: center;
   align-items: center;
   transition: height 0.6s ease-in-out;
-  z-index: 10;
+  z-index: 999;
 }
 
 .curtain-menu {
@@ -128,7 +128,9 @@ h2 {
 
 .display {
   border: 2px solid black;
-  line-height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   height: 80px;
   border-radius: 20px;
   background-color: #60BFF5;
@@ -198,7 +200,7 @@ h2 {
   }
 }
 .shake {
-  animation: 0.5s;
+  animation: shake 0.5s;
 }
 
 @media (min-width: 800px) {
@@ -234,8 +236,9 @@ h2 {
   }
   .display {
     height: 125px;
-    text-align: right;
-    justify-content: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     font-size: 35px;
   }
   .buttons {

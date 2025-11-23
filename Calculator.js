@@ -9,6 +9,9 @@ let justCalculated= false;
 const ERROR_MESSAGE = "SEA KING ATTACK";
 //max out digits
 const MAX_DIGITS = 12;
+//adding animation to calc-wrapper start by creating variable
+let calcWrapper = document.querySelector(".calc-wrapper");
+
 
 //display function - calc will show 0 if nothing is in currentInput
 function updateDisplay() {
@@ -22,6 +25,22 @@ function updateDisplay() {
     display.textContent = currentInput || "0";
     }
 };
+//error animation - creating the function
+function showError(message) {
+    currentInput = message;
+    updateDisplay();
+    //adding class in js
+    calcWrapper.classList.remove("shake"); //remove class once down
+    void calcWrapper.offsetWidth; //reflow layout
+    calcWrapper.classList.add("shake"); // add shake again
+
+    //telling when to stop the animation after 1.5s
+    setTimeout(() => {
+        display.classList.remove("shake");
+        currentInput = "";
+        updateDisplay();
+    }, 1500);
+}
 // adding values to the number button
 document.querySelectorAll(".number").forEach(btn => 
     {btn.addEventListener("click", () => {
@@ -93,9 +112,7 @@ document.querySelectorAll(".operation").forEach(btn => {
 document.querySelector(".equal").addEventListener("click", () => {
     //missing input willresult in a message lasting 1.5 seconds
     if (!currentInput || !previousInput) {
-        currentInput = "Luffy forgot a number!";
-        updateDisplay();
-        setTimeout(() => { currentInput = ""; updateDisplay() }, 1500);
+        showError("Luffy forgot a number!");
         return;
     }
     //if user doesnt input anything - do nothing
@@ -110,7 +127,7 @@ document.querySelector(".equal").addEventListener("click", () => {
         case "*": result = num1 * num2; break;
         //if user inputs 0 as num2 - mark no berries found / error
         case "/": if (num2 === 0) {
-            currentInput = "SEA KING ATTACK!";
+            showError(ERROR_MESSAGE);
             previousInput="";
             operator = "";
             justCalculated = true;
@@ -132,14 +149,6 @@ document.querySelector(".equal").addEventListener("click", () => {
     //buttons clear out
     justCalculated = true;
 });
-//error animation
-function showError(message) {
-    currentInput = message;
-    updateDisplay();
 
-    display.classList.add("shake");
-
-    //telling when to stop the animation
-}
 //start with displaying 0 
 updateDisplay();
