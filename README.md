@@ -1,0 +1,2 @@
+This is a One piece themed responsive and interactive calculator. The caloulator allows user to perform basic operations like +, -, /, and *. This calculator handles errors by incorporating the Theme; Messages are displayed depending on the error. For example, the calculator displays "Luffy forgot a number
+" when a user forges to add inputs, and will display "Sea King Attack" when a calculation cannot be performed. The calculator also shakes when an error happens.The calculator also allows user to dlear out the display or delete the last input.
